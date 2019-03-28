@@ -27,18 +27,12 @@ typedef struct{
 } Session;
 
 typedef int (*BKKCheck)(Session*,  uint8_t* , uint64_t);
-typedef int (*create_session)(struct Session*  , char*);
+typedef int (*create_session)(Session*, char*);
 typedef int (*BKKCheck)(Session*,  uint8_t* , uint64_t);
 
 typedef int (*BKK)(Session*,  char*);
 typedef int (*i_check_format)(Session*,  uint8_t*, uint64_t);
-typedef char* (*v_session_configuration_version)(struct Session*);
-
-typedef struct{
-	uint8_t* content;
-	uint64_t sizecontent;
-} ContentInfo;
-
+typedef char* (*v_session_configuration_version)(Session*);
 
 
 #endif /* DEF_HPP_ */

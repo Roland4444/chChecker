@@ -1,21 +1,8 @@
 
 #include "def.hpp"
 
-class summer{
-public:
-	int count;
-	void inc_and_print()
-	{
-		std::cout<< count++;
-	}
-	summer()
-	{
-		count = 0;
-	}
-};
-
-
 class ContentInfo{
+public:
 	uint8_t* content;
 	uint64_t size;
 };
@@ -28,15 +15,15 @@ public:
 	BKKCheck v_check;
 	BKKCheck i_check;
 
-	int checkFile_(Checker* self, char* filename)
+	int checkFile(char* filename)
 	{
-	  ContentInfo* ci = self->loadContent(filename);
+	  ContentInfo* ci = loadContent(filename);
 	  if (ci == NULL)
 	      return -1;
 	  printf("SIZE CONTENT==%d\n\n\n", ci->size);
 	  if (strstr(filename, "wav")!=NULL){
 	    printf("CHECKING WAV FILE %s", filename);
-	    if (!self->v_check(self->sessions[soundindex], ci->content, ci->size))
+	    if (!v_check(sessions[soundindex], ci->content, ci->size))
 	    {
 		delete(ci);
 		printf("Check failed!\n");
@@ -50,7 +37,7 @@ public:
 	    }
 	  }
 	  printf("CHECKING photo FILE %s", filename);
-	  if (!self->i_check(self->sessions[photoindex], ci->content, ci->size))
+	  if (!i_check(sessions[photoindex], ci->content, ci->size))
 	  {
 	      printf("Check failed!\n");
 	      delete(ci);
@@ -87,8 +74,8 @@ public:
 
 
 	};
-    private:
 
+    private:
 	int read_file_content(const char* file_path, uint8_t** content, size_t* content_size)
 	{
 	  FILE* fd = fopen(file_path, "rb");
@@ -117,7 +104,7 @@ public:
 
 	char* getVersion()
 	{
-	  v_session_configuration_version get_sess_version = (v_session_configuration_version)(dlsym(self->handles[soundindex],"v_session_configuration_version"));
+	  v_session_configuration_version get_sess_version = (v_session_configuration_version)(dlsym(handles[soundindex],"v_session_configuration_version"));
 	  return get_sess_version(sessions[soundindex]);
 
 	}
@@ -166,23 +153,27 @@ public:
 
 
 };
-summer* sum;
-Checker* ca;
+
+int main(int argc, char* argv[])
+{
+  printf("USING C++ Version OOP");
+  Checker* ca = new Checker();
+  for (int i=1; i<argc; i++)
+    ca->checkFile(argv[i]);
+
+}
+
 extern "C"
 {
+Checker* ca;
+
 void init()
 {
-	sum = new summer();
 	ca = new Checker();
 }
 
-void call()
+int check(char* filename)
 {
-	sum -> inc_and_print();
-}
-
-int check(ContentInfo * ci)
-{
-	return ca -> checkFile(ci);
+	return ca -> checkFile(filename);
 }
 }
