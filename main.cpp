@@ -56,6 +56,7 @@ public:
 
 	Checker()
 	{
+	  printf("USING C++ Version OOP");
 	  this->handles[soundindex] = dlopen(soundso, RTLD_LAZY);
 	  this->handles[photoindex] = dlopen(photoso, RTLD_LAZY);
 	  if (!this->handles[soundindex])
