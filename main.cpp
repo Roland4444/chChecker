@@ -55,7 +55,7 @@ class Checker_Audio
 		{
 			this -> session = (Session*)malloc(sizeof(Session));
 			std::cout<<"Loads "<<sizeof(Session)<<"  mamory\n";
-			this -> handle = dlopen("./libcv.so", RTLD_LAZY);
+			this -> handle = dlopen("./libsqc.so", RTLD_LAZY);
 			ResultCreating=0;
 			if (handle == NULL)
 			{
