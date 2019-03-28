@@ -13,7 +13,6 @@ public:
 		count = 0;
 	}
 };
-summer* sum;
 
 class Checker_Audio
 {
@@ -35,8 +34,7 @@ class Checker_Audio
           else return 0;
         }
 
-
-		int checkFile(char * filename){
+        int checkFile(char * filename){
 		    std::cout<<"\n\nchecking =>"<<filename<<endl;
 		    ContentInfo * ci;
 			if (loadContent(filename) == NULL)
@@ -67,12 +65,14 @@ class Checker_Audio
 			initSession();
 		};
     private:
-        ContentInfo * loadContent(char * filename){
+        ContentInfo * loadContent(char * filename)
+        {
             ContentInfo * ci=new ContentInfo;
             read_file_content(filename, &ci ->content, &ci->sizecontent);
             return ci;
         }
-        void initSession(){
+        void initSession()
+        {
             Session * session = (Session*)malloc(sizeof(Session));
             v_create_session load = (v_create_session)(dlsym(this->handle, "v_create_session"));
             if (!load){
@@ -105,17 +105,23 @@ class Checker_Audio
         }
 
 };
-
+summer* sum;
+Checker_Audio* ca;
 extern "C"
 {
 void init()
 {
 	sum = new summer();
+	ca = new Checker_Audio();
 }
 
 void call()
 {
 	sum -> inc_and_print();
 }
-}
 
+int check(ContentInfo * ci)
+{
+	return ca -> checkFile(ci);
+}
+}
