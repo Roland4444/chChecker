@@ -59,14 +59,14 @@ public:
 	  this->handles[soundindex] = dlopen(soundso, RTLD_LAZY);
 	  this->handles[photoindex] = dlopen(photoso, RTLD_LAZY);
 	  if (!this->handles[soundindex])
-		    printf("error loading sound so");
+		    printf("\n\nerror loading sound so\n\n");
 	  else
-		    printf("Load success sound so");
+		    printf("\n\nLoad success sound so\n\n");
 
 	  if (!this->handles[photoindex])
-		    printf("error loading photo so");
+		    printf("\n\nerror loading photo so\n\n");
 		  else
-		    printf("Load success photo so");
+		    printf("\n\nLoad success photo so\n\n");
 
 	  this->initSessions();
 	  this->loadcheckers();
