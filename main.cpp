@@ -32,14 +32,14 @@ public:
 	    printf("CHECKING WAV FILE %s", filename);
 	    if (!v_check(sessions[soundindex], ci->content, ci->size))
 	    {
-		//delete(ci);
+		delete(ci);
 		printf("Check failed!\n");
 		return -3;
 	    }
 	    else
 	    {
 	      printf("Checking passed\n");
-	      //delete(ci);
+	      delete(ci);
 	      return 0;
 	    }
 	  }
@@ -47,16 +47,16 @@ public:
 	  if (!i_check(sessions[photoindex], ci->content, ci->size))
 	  {
 	      printf("Check failed!\n");
-	      //delete(ci);
+	      delete(ci);
 	      return -3;
 	  }
 	  else
 	  {
 	      printf("Checking passed\n");
-	      //delete(ci);
+	      delete(ci);
 	      return 0;
 	  }
-	  //delete(ci);
+	  delete(ci);
 	  return -9;
 
 	}
@@ -64,7 +64,6 @@ public:
 	Checker()
 	{
 	  printf("USING C++ Version OOP");
-	  printf("\n\n\n\n\n\nthis version have memory leaks!!!\n\n\n");
 	  this->handles[soundindex] = dlopen(soundso, RTLD_LAZY);
 	  this->handles[photoindex] = dlopen(photoso, RTLD_LAZY);
 	  if (!this->handles[soundindex])
