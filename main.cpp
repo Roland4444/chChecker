@@ -31,33 +31,22 @@ public:
 	  if (strstr(filename, "wav")!=NULL){
 	    printf("CHECKING WAV FILE %s", filename);
 	    if (!v_check(sessions[soundindex], ci->content, ci->size))
-	    {
-		delete(ci);
-		printf("Check failed!\n");
-		return -3;
-	    }
-	    else
-	    {
+	     	printf("Check failed!\n");
+		else
 	      printf("Checking passed\n");
-	      delete(ci);
-	      return 0;
-	    }
+
+	    delete(ci);
+	    return 0;
 	  }
+
 	  printf("CHECKING photo FILE %s", filename);
 	  if (!i_check(sessions[photoindex], ci->content, ci->size))
-	  {
-	      printf("Check failed!\n");
-	      delete(ci);
-	      return -3;
-	  }
+		  printf("Check failed!\n");
 	  else
-	  {
-	      printf("Checking passed\n");
-	      delete(ci);
-	      return 0;
-	  }
+		  printf("Checking passed\n");
+
 	  delete(ci);
-	  return -9;
+	  return sessions[photoindex]->last_error;
 
 	}
 
