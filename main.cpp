@@ -15,6 +15,11 @@ public:
 	BKKCheck v_check;
 	BKKCheck i_check;
 
+	int checkFile(uint8_t* content,	uint64_t size)
+	{
+
+	}
+
 	int checkFile(char* filename)
 	{
 	  ContentInfo* ci = loadContent(filename);
