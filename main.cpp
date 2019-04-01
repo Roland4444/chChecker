@@ -21,9 +21,15 @@ public:
 		return 0;
 	}
 
+	void lastErroeresult(int result)
+	{
+		printf("LAST ERROR RESULT = %d", result);
+	};
+
 
 	int checkFile(char* filename)
 	{
+	  int result = 5555;
 	  ContentInfo* ci = loadContent(filename);
 	  if (ci == NULL)
 	      return -1;
@@ -34,9 +40,10 @@ public:
 	     	printf("Check failed!\n");
 		else
 	      printf("Checking passed\n");
-
-	    delete(ci);
-	    return 0;
+	   result = sessions[soundindex]->last_error;
+	   lastErroeresult(result);
+	   delete(ci);
+	   return result;
 	  }
 
 	  printf("CHECKING photo FILE %s", filename);
@@ -44,9 +51,10 @@ public:
 		  printf("Check failed!\n");
 	  else
 		  printf("Checking passed\n");
-
+	  result = sessions[photoindex]->last_error;
+	  lastErroeresult(result);
 	  delete(ci);
-	  return sessions[photoindex]->last_error;
+	  return result;
 
 	}
 
