@@ -13,18 +13,20 @@
 #define soundindex 0
 #define photoindex 1
 
-typedef struct{
+class Version{
+public:
 	int major;
 	int minor;
 	int build;
-} Version;
+} ;
 
-typedef struct{
+class Session{
+public:
 	Version version;
 	char *id;
 	void *payment;
 	int last_error;
-} Session;
+};
 
 enum SessionValueState {
     SESSION_VALUE_UNDEFINED,
@@ -33,12 +35,12 @@ enum SessionValueState {
     SESSION_VALUE_ERROR
 };
 
-struct SessionValue {
+class SessionValue {
     char *name;
     bool enable;
     enum SessionValueState state;
     double value;
-    struct SessionValue *next;
+    SessionValue* next;
 };
 
 typedef int (*BKKCheck)(Session*,  uint8_t* , uint64_t);

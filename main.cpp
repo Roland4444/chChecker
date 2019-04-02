@@ -26,6 +26,10 @@ public:
 		printf("LAST ERROR RESULT = %d", result);
 	};
 
+	void loadresultSessions()
+	{
+
+	};
 
 	int checkFile(char* filename)
 	{
@@ -75,6 +79,7 @@ public:
 
 	  this->initSessions();
 	  this->loadcheckers();
+	  this->loadresultSessions();
 	  printf("\n\n\nVERSION===>\n\n%s\n\n\n\n",  getVersion());
 
 
