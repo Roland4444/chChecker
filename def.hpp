@@ -48,6 +48,7 @@ typedef int (*BKKCheck)(Session*,  uint8_t* , uint64_t);
 typedef int (*BKK)(Session*,  char*);
 typedef int (*i_check_format)(Session*,  uint8_t*, uint64_t);
 typedef char* (*v_session_configuration_version)(Session*);
-typedef bool (*i_result_session)(Session*, SessionValue**);
 
+typedef bool (*i_result_session)(Session*, SessionValue**);
+typedef bool (*v_result_session)(Session*, SessionValue**);
 #endif /* DEF_HPP_ */
